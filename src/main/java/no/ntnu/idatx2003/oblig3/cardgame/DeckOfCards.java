@@ -8,7 +8,7 @@ import java.util.Random;
 public class DeckOfCards {
   private final char[] suits = {'S','H','D','C'};
   private ArrayList<PlayingCard> cardDeck = new ArrayList<>();
-  private Collection<PlayingCard> dealtCards = new HashSet<PlayingCard>();
+
 
 
   /**
