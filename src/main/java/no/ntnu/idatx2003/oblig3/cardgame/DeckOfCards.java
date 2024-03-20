@@ -1,9 +1,7 @@
 package no.ntnu.idatx2003.oblig3.cardgame;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Random;
+
+import java.util.*;
 
 public class DeckOfCards {
   private final char[] suits = {'S','H','D','C'};
@@ -19,6 +17,7 @@ public class DeckOfCards {
     for (char suit : suits) {
       for (int face = 1; face <= 13; face++) {
         cardDeck.add(i, new PlayingCard(suit, face));
+
         i++;
         }
       }
@@ -41,11 +40,12 @@ public class DeckOfCards {
   }
 
 
-
   /**
    * Clears the deck of cards.
    */
   public void clearDeck() {
     cardDeck.clear();
   }
+
+
 }

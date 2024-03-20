@@ -2,6 +2,8 @@ package no.ntnu.idatx2003.oblig3.cardgame;
 
 import javafx.scene.image.Image;
 
+import java.util.Objects;
+
 /**
  * Represents a playing card. A playing card has a number (face) between
  * 1 and 13, where 1 is called an Ace, 11 = Knight, 12 = Queen and 13 = King.
@@ -14,7 +16,7 @@ public class PlayingCard {
 
   private final char suit; // 'S'=spade, 'H'=heart, 'D'=diamonds, 'C'=clubs
   private final int face; // a number between 1 and 13
-  private final Image cardImage; // Image of the card
+  //private final Image cardImage; // Image of the card
 
   /**
    * Creates an instance of a PlayingCard with a given suit and face.
@@ -29,7 +31,8 @@ public class PlayingCard {
    * @param face The face value of the card, an integer between 1 and 13
    * @throws IllegalArgumentException if suit or face have invalid values.
    */
-  public PlayingCard(char suit, int face) {
+  public PlayingCard(char suit, int face//, Image cardImage//
+                     ) {
     if (suit != 'H' && suit != 'D' && suit != 'C' && suit != 'S') {
       throw new IllegalArgumentException("Parameter suit must be one of H, D, C or S");
     }
@@ -40,18 +43,18 @@ public class PlayingCard {
 
     this.suit = suit;
     this.face = face;
-    this.cardImage = new Image(getClass().getResource("/assets/" + suit + face + ".png").toExternalForm());
+    //this.cardImage = new Image(Objects.requireNonNull(getClass().getResource("/cards/" + suit + face + ".png")).toExternalForm());
   }
 
   /**
-   * Returns the suit and face of the card as a string.
-   * A 4 of hearts is returned as the string "H4".
    *
-   * @return the suit and face of the card as a string
    */
-  public String getAsString() {
-    return String.format("%s%s", suit, face);
+  public String cardAsString() {
+    return suit + String.valueOf(face);
   }
+
+
+
 
   /**
    * Returns the suit of the card, 'S' for Spades, 'H' for Heart,
@@ -78,7 +81,8 @@ public class PlayingCard {
    * @return the image of the card
    */
   public Image getCardImage() {
-    return cardImage;
+    return null;
+    //return cardImage;
   }
 
   @Override
