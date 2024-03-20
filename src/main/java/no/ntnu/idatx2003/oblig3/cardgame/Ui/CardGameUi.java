@@ -178,46 +178,19 @@ public class CardGameUi extends Application {
     HBox topSepperatedBox = new HBox(10);
     topSepperatedBox.setAlignment(Pos.CENTER);
 
-    HBox flushBox = new HBox();
-    flushBox.setAlignment(Pos.CENTER);
-    Label flushLabel = new Label("Flush: ");
-    TextArea flushArea = new TextArea();
-    flushArea.setPrefSize(10, 10);
-    flushArea.setWrapText(true);
-    flushArea.setEditable(false);
-    flushBox.getChildren().addAll(flushLabel, flushArea);
+    HBox flushBox = flushBox();
 
 
-    HBox queenOfSpadesBox = new HBox();
-    queenOfSpadesBox.setAlignment(Pos.CENTER);
-    Label queenOfSpadesLabel = new Label("Queen of Spades: ");
-    TextArea queenOfSpadesArea = new TextArea();
-    queenOfSpadesArea.setPrefSize(10, 10);
-    queenOfSpadesArea.setWrapText(true);
-    queenOfSpadesArea.setEditable(false);
-    queenOfSpadesBox.getChildren().addAll(queenOfSpadesLabel, queenOfSpadesArea);
+    HBox queenOfSpadesBox = queenOfSpadesBox();
 
     bottomSepperatedBox.getChildren().addAll(flushBox, queenOfSpadesBox);
 
 
 
-    HBox sumOfTheFacesBox = new HBox();
-    sumOfTheFacesBox.setAlignment(Pos.CENTER);
-    Label sumOfTheFacesLabel = new Label("Sum of the faces: ");
-    TextArea sumOfTheFacesArea = new TextArea();
-    sumOfTheFacesArea.setPrefSize(10, 10);
-    sumOfTheFacesArea.setWrapText(true);
-    sumOfTheFacesArea.setEditable(false);
-    sumOfTheFacesBox.getChildren().addAll(sumOfTheFacesLabel, sumOfTheFacesArea);
+    HBox sumOfTheFacesBox = sumOfTheFacesBox();
+
 
     HBox cardsOfHeartsBox = new HBox();
-    cardsOfHeartsBox.setAlignment(Pos.CENTER);
-    Label cardsOfHeartsLabel = new Label("Cards of Hearts: ");
-    TextArea cardsOfHeartsArea = new TextArea();
-    cardsOfHeartsArea.setPrefSize(10, 10);
-    cardsOfHeartsArea.setWrapText(true);
-    cardsOfHeartsArea.setEditable(false);
-    cardsOfHeartsBox.getChildren().addAll(cardsOfHeartsLabel, cardsOfHeartsArea);
 
 
     topSepperatedBox.getChildren().addAll(sumOfTheFacesBox, cardsOfHeartsBox);
@@ -244,6 +217,41 @@ public class CardGameUi extends Application {
     return flushBox;
   }
 
+  public HBox queenOfSpadesBox() {
+    HBox queenOfSpadesBox = new HBox();
+    queenOfSpadesBox.setAlignment(Pos.CENTER);
+    Label queenOfSpadesLabel = new Label("Queen of Spades: ");
+    TextArea queenOfSpadesArea = new TextArea();
+    queenOfSpadesArea.setPrefSize(10, 10);
+    queenOfSpadesArea.setWrapText(true);
+    queenOfSpadesArea.setEditable(false);
+    queenOfSpadesBox.getChildren().addAll(queenOfSpadesLabel, queenOfSpadesArea);
+    return queenOfSpadesBox;
+  }
+
+  public HBox sumOfTheFacesBox() {
+    HBox sumOfTheFacesBox = new HBox();
+    sumOfTheFacesBox.setAlignment(Pos.CENTER);
+    Label sumOfTheFacesLabel = new Label("Sum of the faces: ");
+    TextArea sumOfTheFacesArea = new TextArea();
+    sumOfTheFacesArea.setPrefSize(10, 10);
+    sumOfTheFacesArea.setWrapText(true);
+    sumOfTheFacesArea.setEditable(false);
+    sumOfTheFacesBox.getChildren().addAll(sumOfTheFacesLabel, sumOfTheFacesArea);
+    return sumOfTheFacesBox;
+  }
+
+  public HBox cardsOfHeartsBox() {
+    HBox cardsOfHeartsBox = new HBox();
+    cardsOfHeartsBox.setAlignment(Pos.CENTER);
+    Label cardsOfHeartsLabel = new Label("Cards of Hearts: ");
+    TextArea cardsOfHeartsArea = new TextArea();
+    cardsOfHeartsArea.setPrefSize(10, 10);
+    cardsOfHeartsArea.setWrapText(true);
+    cardsOfHeartsArea.setEditable(false);
+    cardsOfHeartsBox.getChildren().addAll(cardsOfHeartsLabel, cardsOfHeartsArea);
+    return cardsOfHeartsBox;
+  }
 
 
 
