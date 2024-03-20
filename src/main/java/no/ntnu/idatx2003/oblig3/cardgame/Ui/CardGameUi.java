@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import no.ntnu.idatx2003.oblig3.cardgame.DeckOfCards;
 import no.ntnu.idatx2003.oblig3.cardgame.PlayingCard;
 
+import javax.swing.*;
 import java.util.Collection;
 
 
@@ -111,8 +112,13 @@ public class CardGameUi extends Application {
     HBox cardBoard = new HBox(10);
     cardBoard.setAlignment(Pos.CENTER);
     for (PlayingCard card : drawnCards) {
+      VBox playingCard = new VBox(20);
+      playingCard.setPrefSize(100, 200);
+      playingCard.setStyle("-fx-background-color: #E9F3E8;");
+      playingCard.setAlignment(Pos.CENTER);
       Label cardLabel = new Label(card.cardAsString());
-      cardBoard.getChildren().add(cardLabel);
+      playingCard.getChildren().add(cardLabel);
+      cardBoard.getChildren().add(playingCard);
     }
     centerBox.getChildren().add(cardBoard);
     return centerBox;
@@ -124,7 +130,7 @@ public class CardGameUi extends Application {
     VBox newBox = new VBox(10);
     Region spacer = new Region();
     spacer.setPrefSize(700, 50);
-    HBox.setHgrow(spacer, Priority.ALWAYS);
+    HBox.setHgrow(spacer, Priority.NEVER);
     newBox.getChildren().addAll(spacer);
 
     return newBox;
@@ -140,23 +146,25 @@ public class CardGameUi extends Application {
     drawButton.setPrefSize(100, 50);
 
     drawButton.setOnAction(event -> {
-
       DeckOfCards deck = new DeckOfCards(); // Create an instance of the DeckOfCards
       Collection<PlayingCard> drawnCards = deck.dealHand(CARD_TO_DRAW);
       createWindow(drawnCards);
-
     });
 
 
+    Button clearButton = new Button("Clear");
+    clearButton.setPrefSize(100, 50);
 
+    clearButton.setOnAction(event -> {
+      createWindow();
+    });
 
+    Button checkButton = new Button("Check hand");
+    checkButton.setPrefSize(100, 50);
 
-
-    Button showButton = new Button("Show");
-    showButton.setPrefSize(100, 50);
 
     // Distributes objects to border areas
-    rightBox.getChildren().addAll(drawButton, showButton);
+    rightBox.getChildren().addAll(drawButton, clearButton, checkButton);
 
     return rightBox;
   }
@@ -164,52 +172,79 @@ public class CardGameUi extends Application {
   public VBox createBottomPane() {
     VBox bottomBox = new VBox();
 
+
     HBox bottomSepperatedBox = new HBox(10);
+    bottomSepperatedBox.setAlignment(Pos.CENTER);
     HBox topSepperatedBox = new HBox(10);
+    topSepperatedBox.setAlignment(Pos.CENTER);
 
-    TextArea bottomLeft = new TextArea();
-    bottomLeft.setPrefSize(300, 50);
-    bottomLeft.setWrapText(true);
-    bottomLeft.setEditable(false);
-    bottomLeft.setText("This is the bottom left area");
+    HBox flushBox = new HBox();
+    flushBox.setAlignment(Pos.CENTER);
+    Label flushLabel = new Label("Flush: ");
+    TextArea flushArea = new TextArea();
+    flushArea.setPrefSize(10, 10);
+    flushArea.setWrapText(true);
+    flushArea.setEditable(false);
+    flushBox.getChildren().addAll(flushLabel, flushArea);
 
-    TextArea bottomRight = new TextArea();
-    bottomRight.setPrefSize(400, 50);
-    bottomRight.setWrapText(true);
-    bottomRight.setEditable(false);
-    bottomRight.setText("This is the bottom right area");
 
-    bottomSepperatedBox.getChildren().addAll(bottomLeft, bottomRight);
+    HBox queenOfSpadesBox = new HBox();
+    queenOfSpadesBox.setAlignment(Pos.CENTER);
+    Label queenOfSpadesLabel = new Label("Queen of Spades: ");
+    TextArea queenOfSpadesArea = new TextArea();
+    queenOfSpadesArea.setPrefSize(10, 10);
+    queenOfSpadesArea.setWrapText(true);
+    queenOfSpadesArea.setEditable(false);
+    queenOfSpadesBox.getChildren().addAll(queenOfSpadesLabel, queenOfSpadesArea);
 
-    HBox spacer = new HBox();
-    spacer.setPrefSize(700, 50);
+    bottomSepperatedBox.getChildren().addAll(flushBox, queenOfSpadesBox);
 
-    IndexedCell topLeft = new IndexedCell();
-    IndexedCell topRight = new IndexedCell();
-    topSepperatedBox.getChildren().addAll(topLeft, topRight);
 
-    // Creates buttons
-    Button button1 = new Button("Test1");
-    Button button2 = new Button("Test2");
-    topSepperatedBox.getChildren().addAll(button1, button2);
+
+    HBox sumOfTheFacesBox = new HBox();
+    sumOfTheFacesBox.setAlignment(Pos.CENTER);
+    Label sumOfTheFacesLabel = new Label("Sum of the faces: ");
+    TextArea sumOfTheFacesArea = new TextArea();
+    sumOfTheFacesArea.setPrefSize(10, 10);
+    sumOfTheFacesArea.setWrapText(true);
+    sumOfTheFacesArea.setEditable(false);
+    sumOfTheFacesBox.getChildren().addAll(sumOfTheFacesLabel, sumOfTheFacesArea);
+
+    HBox cardsOfHeartsBox = new HBox();
+    cardsOfHeartsBox.setAlignment(Pos.CENTER);
+    Label cardsOfHeartsLabel = new Label("Cards of Hearts: ");
+    TextArea cardsOfHeartsArea = new TextArea();
+    cardsOfHeartsArea.setPrefSize(10, 10);
+    cardsOfHeartsArea.setWrapText(true);
+    cardsOfHeartsArea.setEditable(false);
+    cardsOfHeartsBox.getChildren().addAll(cardsOfHeartsLabel, cardsOfHeartsArea);
+
+
+    topSepperatedBox.getChildren().addAll(sumOfTheFacesBox, cardsOfHeartsBox);
+
+    Region spacer = new Region();
+    spacer.setPrefSize(10, 10);
+    HBox.setHgrow(spacer, Priority.ALWAYS);
 
     // Distributes objects to border areas
-    bottomBox.getChildren().addAll(topSepperatedBox, bottomSepperatedBox, spacer);
+    bottomBox.getChildren().addAll(topSepperatedBox,spacer, bottomSepperatedBox);
 
     return bottomBox;
   }
 
-  public HBox Card() {
-    HBox card = new HBox();
-
-
-
-    return card;
+  public HBox flushBox() {
+    HBox flushBox = new HBox();
+    flushBox.setAlignment(Pos.CENTER);
+    Label flushLabel = new Label("Flush: ");
+    TextArea flushArea = new TextArea();
+    flushArea.setPrefSize(10, 10);
+    flushArea.setWrapText(true);
+    flushArea.setEditable(false);
+    flushBox.getChildren().addAll(flushLabel, flushArea);
+    return flushBox;
   }
 
-  public void updateCardBox() {
 
-  }
 
 
 }

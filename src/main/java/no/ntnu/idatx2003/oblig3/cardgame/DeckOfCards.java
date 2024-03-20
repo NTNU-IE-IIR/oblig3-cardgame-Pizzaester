@@ -17,7 +17,6 @@ public class DeckOfCards {
     for (char suit : suits) {
       for (int face = 1; face <= 13; face++) {
         cardDeck.add(i, new PlayingCard(suit, face));
-
         i++;
         }
       }
@@ -30,7 +29,7 @@ public class DeckOfCards {
     Random random = new Random();
     Collection<PlayingCard> dealtCards = new HashSet<PlayingCard>();
     for (int i = 0; i < n; ) {
-      int index = random.nextInt(54);
+      int index = random.nextInt(cardDeck.size());
       if (cardDeck.get(index) != null) {
         dealtCards.add(cardDeck.remove(index));
         i++;
